@@ -1,0 +1,324 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+html {
+    background: #f6f8fb;
+}
+
+body {
+    min-width: 320px;
+    background:
+        linear-gradient(180deg, rgba(246, 248, 251, 0.96), #eef2f7 56%, #f8fafc);
+    color: #1e293b;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+[x-cloak] {
+    display: none !important;
+}
+
+::selection {
+    background: rgba(70, 95, 255, 0.18);
+    color: #0f172a;
+}
+
+a,
+button {
+    transition:
+        background-color .15s ease,
+        border-color .15s ease,
+        color .15s ease,
+        box-shadow .15s ease,
+        transform .15s ease;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid rgba(70, 95, 255, .18);
+    outline-offset: 2px;
+}
+
+input,
+select,
+textarea {
+    min-height: 2.625rem;
+    border-color: #cbd5e1;
+    background-color: #ffffff;
+    color: #0f172a;
+    box-shadow: 0 1px 1px rgba(15, 23, 42, .03);
+    transition:
+        border-color .15s ease,
+        box-shadow .15s ease,
+        background-color .15s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #94a3b8;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #465fff !important;
+    box-shadow: 0 0 0 3px rgba(70, 95, 255, .14) !important;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+thead th {
+    white-space: nowrap;
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: .025em;
+    text-transform: uppercase;
+}
+
+tbody tr {
+    transition: background-color .15s ease;
+}
+
+tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: .375rem;
+    max-width: 100%;
+    border-radius: 9999px;
+    border-width: 1px;
+    padding: .25rem .625rem;
+    font-size: .75rem;
+    font-weight: 700;
+    line-height: 1rem;
+    white-space: nowrap;
+}
+
+main > section,
+main > form,
+main > div.rounded-lg,
+main > div.rounded-xl,
+main > div.rounded-2xl,
+main aside > section {
+    border-radius: .5rem !important;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, .055) !important;
+}
+
+main .bg-white,
+.auth-card {
+    border-color: #e2e8f0;
+}
+
+main .bg-gray-50,
+main .bg-slate-50 {
+    background-color: #f8fafc;
+}
+
+main a[class*="bg-[#465fff]"],
+main button[class*="bg-[#465fff]"],
+main button[class*="bg-blue-600"],
+main a[class*="bg-blue-600"],
+.auth-primary-button {
+    box-shadow: 0 8px 18px rgba(70, 95, 255, .22);
+}
+
+main a[class*="bg-[#465fff]"]:hover,
+main button[class*="bg-[#465fff]"]:hover,
+main button[class*="bg-blue-600"]:hover,
+main a[class*="bg-blue-600"]:hover,
+.auth-primary-button:hover {
+    transform: translateY(-1px);
+}
+
+main a[class*="border-gray-300"],
+main button[class*="border-gray-300"],
+main a[class*="border-slate-300"],
+main button[class*="border-slate-300"] {
+    background-color: #ffffff;
+}
+
+main a[class*="border-gray-300"]:hover,
+main button[class*="border-gray-300"]:hover,
+main a[class*="border-slate-300"]:hover,
+main button[class*="border-slate-300"]:hover {
+    border-color: #94a3b8;
+    background-color: #f8fafc;
+}
+
+.auth-shell {
+    min-height: 100vh;
+    background:
+        linear-gradient(135deg, rgba(70, 95, 255, .1), transparent 36%),
+        linear-gradient(315deg, rgba(16, 185, 129, .1), transparent 34%),
+        #f6f8fb;
+}
+
+.auth-card {
+    border-radius: .5rem;
+    box-shadow: 0 22px 60px rgba(15, 23, 42, .11);
+}
+
+.auth-logo-mark {
+    box-shadow: 0 10px 24px rgba(70, 95, 255, .2);
+}
+
+.dark .bg-white {
+    background-color: #111827 !important;
+}
+
+.dark .bg-gray-50,
+.dark .bg-slate-50 {
+    background-color: #1f2937 !important;
+}
+
+.dark .bg-slate-100,
+.dark .bg-gray-100 {
+    background-color: #0f172a !important;
+}
+
+.dark .text-gray-900,
+.dark .text-slate-900,
+.dark .text-gray-800,
+.dark .text-slate-800 {
+    color: #f8fafc !important;
+}
+
+.dark .text-gray-700,
+.dark .text-slate-700,
+.dark .text-gray-600,
+.dark .text-slate-600 {
+    color: #cbd5e1 !important;
+}
+
+.dark .text-gray-500,
+.dark .text-slate-500,
+.dark .text-gray-400 {
+    color: #94a3b8 !important;
+}
+
+.dark .border-gray-200,
+.dark .border-slate-200,
+.dark .border-gray-300,
+.dark .border-slate-300 {
+    border-color: #334155 !important;
+}
+
+.dark input,
+.dark select,
+.dark textarea {
+    background-color: #0f172a !important;
+    border-color: #334155 !important;
+    color: #f8fafc !important;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+    color: #64748b !important;
+}
+
+.dark table thead,
+.dark .divide-gray-200 > :not([hidden]) ~ :not([hidden]),
+.dark .divide-slate-200 > :not([hidden]) ~ :not([hidden]),
+.dark .divide-gray-100 > :not([hidden]) ~ :not([hidden]),
+.dark .divide-slate-100 > :not([hidden]) ~ :not([hidden]) {
+    border-color: #334155 !important;
+}
+
+.dark .shadow-sm {
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.35) !important;
+}
+
+.dark body {
+    background:
+        linear-gradient(180deg, #020617, #0f172a 58%, #020617);
+}
+
+.dark tbody tr:hover {
+    background-color: rgba(30, 41, 59, 0.72) !important;
+}
+
+.dark main > section,
+.dark main > form,
+.dark main > div.rounded-lg,
+.dark main > div.rounded-xl,
+.dark main > div.rounded-2xl,
+.dark main aside > section {
+    box-shadow: 0 14px 32px rgba(0, 0, 0, .22) !important;
+}
+
+.dark .auth-shell {
+    background:
+        linear-gradient(135deg, rgba(70, 95, 255, .14), transparent 36%),
+        linear-gradient(315deg, rgba(16, 185, 129, .12), transparent 34%),
+        #020617;
+}
+
+.dark .auth-card {
+    background-color: #111827;
+    border-color: #334155;
+    color: #f8fafc;
+}
+
+@media (max-width: 767px) {
+    html,
+    body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    main,
+    [data-app-shell],
+    [data-app-content] {
+        min-width: 0;
+        width: 100%;
+    }
+
+    input,
+    select,
+    textarea {
+        font-size: 16px !important;
+    }
+
+    .overflow-hidden:has(> table) {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .overflow-hidden:has(> table) table,
+    .overflow-x-auto table {
+        min-width: 720px;
+    }
+
+    th,
+    td {
+        vertical-align: top;
+    }
+
+    main > section,
+    main > form,
+    main > div.rounded-lg,
+    main > div.rounded-xl,
+    main > div.rounded-2xl {
+        box-shadow: 0 8px 20px rgba(15, 23, 42, .045) !important;
+    }
+}

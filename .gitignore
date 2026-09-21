@@ -1,0 +1,49 @@
+# Laravel environment files
+.env
+.env.*
+!.env.example
+
+# Dependencies
+/vendor/
+/node_modules/
+
+# Build output
+/public/build/
+/public/hot
+/public/storage
+
+# Laravel runtime files
+/bootstrap/cache/*.php
+!/bootstrap/cache/.gitignore
+/storage/*.key
+/storage/debugbar/
+/storage/logs/*.log
+/storage/pail/
+
+# Test and tooling caches
+.phpunit.result.cache
+/.phpunit.cache/
+/.pest.cache/
+/.phpactor.json
+
+# Composer credentials
+/auth.json
+
+# IDE and local tooling
+/.codex/
+/.cursor/
+/.idea/
+/.nova/
+/.vscode/
+/.zed/
+_ide_helper.php
+_ide_helper_models.php
+.phpstorm.meta.php
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Legacy local VM files
+Homestead.json
+Homestead.yaml

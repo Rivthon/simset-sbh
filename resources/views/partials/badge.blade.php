@@ -1,0 +1,58 @@
+@php
+    $value = $value ?? '';
+    $map = [
+        'pending' => 'bg-yellow-50 text-yellow-700 border-yellow-200',
+        'process' => 'bg-blue-50 text-blue-700 border-blue-200',
+        'done' => 'bg-emerald-50 text-emerald-700 border-emerald-200',
+        'rejected' => 'bg-red-50 text-red-700 border-red-200',
+        'low' => 'bg-slate-50 text-slate-700 border-slate-200',
+        'medium' => 'bg-amber-50 text-amber-700 border-amber-200',
+        'high' => 'bg-red-50 text-red-700 border-red-200',
+        'approved' => 'bg-emerald-50 text-emerald-700 border-emerald-200',
+        'draft' => 'bg-slate-50 text-slate-700 border-slate-200',
+        'ongoing' => 'bg-blue-50 text-blue-700 border-blue-200',
+        'completed' => 'bg-emerald-50 text-emerald-700 border-emerald-200',
+        'baik' => 'bg-emerald-50 text-emerald-700 border-emerald-200',
+        'sedang' => 'bg-amber-50 text-amber-700 border-amber-200',
+        'rusak' => 'bg-red-50 text-red-700 border-red-200',
+        'hilang' => 'bg-slate-50 text-slate-700 border-slate-200',
+        'individual' => 'bg-blue-50 text-blue-700 border-blue-200',
+        'group' => 'bg-indigo-50 text-indigo-700 border-indigo-200',
+        'menunggu_verifikasi' => 'bg-amber-50 text-amber-700 border-amber-200',
+        'menunggu_penggantian' => 'bg-blue-50 text-blue-700 border-blue-200',
+        'sudah_diganti' => 'bg-emerald-50 text-emerald-700 border-emerald-200',
+        'ditolak' => 'bg-red-50 text-red-700 border-red-200',
+        'waiting_replacement' => 'bg-blue-50 text-blue-700 border-blue-200',
+        'replaced' => 'bg-emerald-50 text-emerald-700 border-emerald-200',
+    ];
+    $labels = [
+        'pending' => 'Menunggu Verifikasi',
+        'process' => 'Diproses',
+        'done' => 'Selesai',
+        'rejected' => 'Ditolak',
+        'low' => 'Rendah',
+        'medium' => 'Sedang',
+        'high' => 'Tinggi',
+        'approved' => 'Resmi',
+        'draft' => 'Draft',
+        'ongoing' => 'Berjalan',
+        'completed' => 'Selesai',
+        'peralatan' => 'Peralatan',
+        'perlengkapan' => 'Perlengkapan',
+        'baik' => 'Baik',
+        'sedang' => 'Sedang',
+        'rusak' => 'Rusak',
+        'hilang' => 'Hilang',
+        'individual' => 'QR Individual',
+        'group' => 'QR Kelompok',
+        'menunggu_verifikasi' => 'Menunggu Verifikasi',
+        'menunggu_penggantian' => 'Menunggu Penggantian',
+        'sudah_diganti' => 'Sudah Diganti',
+        'ditolak' => 'Ditolak',
+        'waiting_replacement' => 'Menunggu Penggantian',
+        'replaced' => 'Sudah Diganti',
+    ];
+@endphp
+<span class="badge capitalize {{ $map[$value] ?? 'bg-gray-50 text-gray-700 border-gray-200' }}">
+    {{ $labels[$value] ?? str_replace('_', ' ', $value) }}
+</span>

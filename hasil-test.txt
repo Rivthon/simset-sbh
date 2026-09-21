@@ -1,0 +1,757 @@
+
+  [39;41;1m FAIL [39;49;22m[39m Tests\Feature\AssetControllerTest[39m
+  [31;1m⨯[39;22m[90m [39m[90madmin can view assets page[39m
+  [31;1m⨯[39;22m[90m [39m[90madmin can create asset with generated code and qr code[39m
+  [31;1m⨯[39;22m[90m [39m[90masset validation rejects required fields[39m
+  [31;1m⨯[39;22m[90m [39m[90masset can be updated[39m
+  [31;1m⨯[39;22m[90m [39m[90masset can be deleted[39m
+
+  [39;41;1m FAIL [39;49;22m[39m Tests\Feature\AssetScanControllerTest[39m
+  [31;1m⨯[39;22m[90m [39m[90mvalid qr code displays asset detail[39m
+  [31;1m⨯[39;22m[90m [39m[90minvalid qr code displays not found page[39m
+  [31;1m⨯[39;22m[90m [39m[90masset detail matches scanned qr code[39m
+
+  [39;41;1m FAIL [39;49;22m[39m Tests\Feature\Auth\AuthenticationTest[39m
+  [31;1m⨯[39;22m[90m [39m[90mlogin page can be rendered[39m
+  [31;1m⨯[39;22m[90m [39m[90madmin can login successfully[39m
+  [31;1m⨯[39;22m[90m [39m[90minvalid password is rejected[39m
+  [31;1m⨯[39;22m[90m [39m[90mguest is redirected to login page[39m
+
+  [39;41;1m FAIL [39;49;22m[39m Tests\Feature\DashboardControllerTest[39m
+  [31;1m⨯[39;22m[90m [39m[90mdashboard shows correct statistics[39m
+  [31;1m⨯[39;22m[90m [39m[90mdashboard shows data based on role[39m
+
+  [39;41;1m FAIL [39;49;22m[39m Tests\Feature\InventoryCheckControllerTest[39m
+  [31;1m⨯[39;22m[90m [39m[90minventory check can be created[39m
+  [31;1m⨯[39;22m[90m [39m[90mduplicate inventory check is rejected[39m
+  [31;1m⨯[39;22m[90m [39m[90masset can only be checked once[39m
+  [31;1m⨯[39;22m[90m [39m[90minventory check progress is calculated correctly[39m
+  [31;1m⨯[39;22m[90m [39m[90minventory check can be completed[39m
+  [31;1m⨯[39;22m[90m [39m[90masset condition is updated from completed inventory check[39m
+
+  [39;41;1m FAIL [39;49;22m[39m Tests\Feature\ReportControllerTest[39m
+  [31;1m⨯[39;22m[90m [39m[90mreport page can be displayed[39m
+  [31;1m⨯[39;22m[90m [39m[90mreport filter works correctly[39m
+  [31;1m⨯[39;22m[90m [39m[90mreport export works correctly[39m
+
+  [39;41;1m FAIL [39;49;22m[39m Tests\Feature\RoleUnitScopeTest[39m
+  [31;1m⨯[39;22m[90m [39m[90mmanager only accesses own unit[39m
+  [31;1m⨯[39;22m[90m [39m[90mmanager cannot open asset from another unit[39m
+  [31;1m⨯[39;22m[90m [39m[90mleader only accesses reports[39m
+  [31;1m⨯[39;22m[90m [39m[90mstudent public user cannot access admin pages[39m
+
+  [39;41;1m FAIL [39;49;22m[39m Tests\Feature\ToolReplacementRequestTest[39m
+  [31;1m⨯[39;22m[90m [39m[90mstudent can submit replacement request with generated code[39m
+  [31;1m⨯[39;22m[90m [39m[90mrequest can be verified[39m
+  [31;1m⨯[39;22m[90m [39m[90mrequest can be approved[39m
+  [31;1m⨯[39;22m[90m [39m[90mrequest can be rejected[39m
+
+  [39;41;1m FAIL [39;49;22m[39m Tests\Feature\UnitControllerTest[39m
+  [31;1m⨯[39;22m[90m [39m[90madmin can view units page[39m
+  [31;1m⨯[39;22m[90m [39m[90madmin can create unit[39m
+  [31;1m⨯[39;22m[90m [39m[90mduplicate unit code is rejected by generating unique code[39m
+  [31;1m⨯[39;22m[90m [39m[90mrequired unit fields are validated[39m
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\AssetCon[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\AssetCon[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\AssetCon[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\AssetCon[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\AssetCon[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\AssetSca[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\AssetSca[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\AssetSca[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\Auth\Aut[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\Auth\Aut[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\Auth\Aut[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\Auth\Aut[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\Dashboar[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\Dashboar[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\Inventor[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\Inventor[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\Inventor[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\Inventor[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\Inventor[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\Inventor[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\ReportCo[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\ReportCo[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\ReportCo[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\RoleUnit[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\RoleUnit[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\RoleUnit[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\RoleUnit[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\ToolRepl[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\ToolRepl[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\ToolRepl[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\ToolRepl[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\UnitCont[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\UnitCont[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\UnitCont[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+  [31m─────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\UnitCont[22m… [41;1m QueryException [49;22m  
+[39;1m  SQLSTATE[HY000]: General error: 1 no such column: assets.quantity (Connection: sqlite, Database: :memory:, SQL: update "inventory_check_items" set "system_quantity" = assets.quantity where "rowid" in (select "inventory_check_items"."rowid" from "inventory_check_items" inner join "assets" on "inventory_check_items"."asset_id" = "assets"."id"))[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m841[39m
+    [90m837[0m[90m▕ [0m[35;1m            [0m[39;1m$exceptionType [0m[35;1m= ([0m[39;1m$isUniqueConstraintError [0m[35;1m= [0m[39;1m$this[0m[35;1m->[0m[39;1misUniqueConstraintError[0m[35;1m([0m[39;1m$e[0m[35;1m))[0m
+    [90m838[0m[90m▕ [0m[35;1m                ? [0m[39;1mUniqueConstraintViolationException[0m[35;1m::class[0m
+    [90m839[0m[90m▕ [0m[35;1m                : [0m[39;1mQueryException[0m[35;1m::class;[0m
+    [90m840[0m[90m▕ [0m
+[31;1m  ➜ [0m[3;1m841[0m[90m▕ [0m[35;1m            [0m[39;1m$exception [0m[35;1m= new [0m[39;1m$exceptionType[0m[35;1m([0m
+    [90m842[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mgetNameWithReadWriteType[0m[35;1m(),[0m
+    [90m843[0m[90m▕ [0m[35;1m                [0m[39;1m$query[0m[35;1m,[0m
+    [90m844[0m[90m▕ [0m[35;1m                [0m[39;1m$this[0m[35;1m->[0m[39;1mprepareBindings[0m[35;1m([0m[39;1m$bindings[0m[35;1m),[0m
+    [90m845[0m[90m▕ [0m[35;1m                [0m[39;1m$e[0m[35;1m,[0m
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m841[39;22m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m608[39;22m
+  [90m    NunoMaduro\Collision\Exceptions\TestException::("SQLSTATE[HY000]: General error: 1 no such column: assets.quantity")[39m
+
+
+  [90mTests:[39m    [31;1m35 failed[39;22m[90m (0 assertions)[39m
+  [90mDuration:[39m [39m3.57s[39m
+
