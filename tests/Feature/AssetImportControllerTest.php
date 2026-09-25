@@ -100,12 +100,70 @@ class AssetImportControllerTest extends TestCase
         $this->assertSame(['baik' => 0, 'sedang' => 0, 'rusak' => 4, 'hilang' => 0], $asset->conditionCounts());
     }
 
+    public function test_asset_import_rejects_duplicate_rows_in_the_same_file(): void
+    {
+        $unit = $this->unit();
+        $this->category($unit);
+        $this->location($unit);
+        $headers = [
+            'nama_aset', 'kategori', 'lokasi', 'jumlah', 'jumlah_baik', 'jumlah_sedang',
+            'jumlah_rusak', 'jumlah_hilang', 'satuan', 'cara_identifikasi_aset',
+        ];
+        $row = ['Aset Duplikat', 'Alat Ukur', 'Ruang Praktikum', 2, 2, 0, 0, 0, 'pcs', 'QR Kelompok'];
+        $path = $this->makeImportFile($headers, [$row, $row]);
+
+        try {
+            $this->actingAs($this->user('admin'))
+                ->post(route('assets.import.store'), [
+                    'unit_id' => $unit->id,
+                    'file' => new UploadedFile($path, 'duplikat.xlsx', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', null, true),
+                ])
+                ->assertSessionHas('import_errors');
+        } finally {
+            @unlink($path);
+        }
+
+        $this->assertSame(1, Asset::where('name', 'Aset Duplikat')->count());
+    }
+
+    public function test_asset_import_rejects_a_row_that_already_exists_in_database(): void
+    {
+        $unit = $this->unit();
+        $category = $this->category($unit);
+        $location = $this->location($unit);
+        $this->asset($unit, [
+            'category' => $category,
+            'location' => $location,
+            'name' => 'Aset Sudah Ada',
+        ]);
+        $path = $this->makeImportFile([
+            'nama_aset', 'kategori', 'lokasi', 'jumlah', 'jumlah_baik', 'jumlah_sedang',
+            'jumlah_rusak', 'jumlah_hilang', 'satuan', 'cara_identifikasi_aset',
+        ], [[
+            'Aset Sudah Ada', 'Alat Ukur', 'Ruang Praktikum', 1, 1, 0, 0, 0, 'unit', 'QR Individual',
+        ]]);
+
+        try {
+            $this->actingAs($this->user('admin'))
+                ->post(route('assets.import.store'), [
+                    'unit_id' => $unit->id,
+                    'file' => new UploadedFile($path, 'sudah-ada.xlsx', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', null, true),
+                ])
+                ->assertSessionHas('import_errors');
+        } finally {
+            @unlink($path);
+        }
+
+        $this->assertSame(1, Asset::where('name', 'Aset Sudah Ada')->count());
+    }
+
     private function makeImportFile(array $headers, array $row): string
     {
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
         $sheet->fromArray($headers, null, 'A1');
-        $sheet->fromArray($row, null, 'A2');
+        $rows = isset($row[0]) && is_array($row[0]) ? $row : [$row];
+        $sheet->fromArray($rows, null, 'A2');
         $path = tempnam(sys_get_temp_dir(), 'simaset-import-').'.xlsx';
         (new Xlsx($spreadsheet))->save($path);
 

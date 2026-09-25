@@ -174,6 +174,8 @@ class AssetImportController extends Controller
 
         $preparedRows = [];
         $errors = [];
+        $seenImportKeys = [];
+        $seenLegacyCodes = [];
 
         foreach ($rows as $rowNumber => $row) {
             if (AssetClassifier::isConsumable([
@@ -244,7 +246,32 @@ class AssetImportController extends Controller
             ]);
 
             try {
-                $preparedRows[] = $this->prepareRow($request, $row, $unit);
+                $data = $this->prepareRow($request, $row, $unit);
+                $legacyCode = $this->normalizeDuplicateValue($data['legacy_inventory_code']);
+
+                if ($legacyCode !== null && isset($seenLegacyCodes[$legacyCode])) {
+                    $errors[] = 'Baris '.$rowNumber.': Kode aset lama '.$data['legacy_inventory_code'].' duplikat dengan baris '.$seenLegacyCodes[$legacyCode].'.';
+                    continue;
+                }
+
+                $importKey = $this->duplicateImportKey($data);
+
+                if (isset($seenImportKeys[$importKey])) {
+                    $errors[] = 'Baris '.$rowNumber.': Data aset duplikat dengan baris '.$seenImportKeys[$importKey].'.';
+                    continue;
+                }
+
+                if ($this->matchingAssetQuery($data)->exists()) {
+                    $errors[] = 'Baris '.$rowNumber.': Data aset yang sama sudah ada di database.';
+                    continue;
+                }
+
+                $preparedRows[] = $data;
+                $seenImportKeys[$importKey] = $rowNumber;
+
+                if ($legacyCode !== null) {
+                    $seenLegacyCodes[$legacyCode] = $rowNumber;
+                }
             } catch (\InvalidArgumentException $exception) {
                 $errors[] = 'Baris '.$rowNumber.': '.$exception->getMessage();
             }
@@ -356,6 +383,51 @@ class AssetImportController extends Controller
         }
 
         return false;
+    }
+
+    private function duplicateImportKey(array $data): string
+    {
+        $columns = [
+            'unit_id', 'category_id', 'location_id', 'container_id', 'identification_type',
+            'quantity', 'satuan', 'legacy_inventory_code', 'name', 'kondisi_aset',
+            'jumlah_baik', 'jumlah_sedang', 'jumlah_rusak', 'jumlah_hilang', 'description',
+        ];
+
+        return hash('sha256', json_encode(array_map(
+            fn (string $column) => $this->normalizeDuplicateValue($data[$column] ?? null),
+            $columns,
+        ), JSON_THROW_ON_ERROR));
+    }
+
+    private function matchingAssetQuery(array $data): Builder
+    {
+        return Asset::query()
+            ->where('unit_id', $data['unit_id'])
+            ->where('category_id', $data['category_id'])
+            ->where('location_id', $data['location_id'])
+            ->where('container_id', $data['container_id'])
+            ->where('identification_type', $data['identification_type'])
+            ->where('quantity', $data['quantity'])
+            ->where('satuan', $data['satuan'])
+            ->where('legacy_inventory_code', $data['legacy_inventory_code'])
+            ->whereRaw('LOWER(TRIM(name)) = ?', [mb_strtolower(trim($data['name']))])
+            ->where('kondisi_aset', $data['kondisi_aset'])
+            ->where('jumlah_baik', $data['jumlah_baik'])
+            ->where('jumlah_sedang', $data['jumlah_sedang'])
+            ->where('jumlah_rusak', $data['jumlah_rusak'])
+            ->where('jumlah_hilang', $data['jumlah_hilang'])
+            ->where('description', $data['description']);
+    }
+
+    private function normalizeDuplicateValue(mixed $value): mixed
+    {
+        if (! is_string($value)) {
+            return $value;
+        }
+
+        $value = preg_replace('/\s+/u', ' ', trim($value));
+
+        return $value === '' ? null : mb_strtolower($value);
     }
 
     private function resolveImportUnit(Request $request): Unit
